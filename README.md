@@ -98,8 +98,109 @@ dfb
 ![image](https://github.com/user-attachments/assets/1b006494-4479-4121-9b5d-d7c5923e1cd8)
 
 
+```
+from category_encoders import TargetEncoder
+te=TargetEncoder()
+CC=df.copy()
+new=te.fit_transform(X=CC["City"],y=CC["Target"])
+CC=pd.concat([CC,new],axis=1)
+CC
+```
+![image](https://github.com/user-attachments/assets/34ca5ee2-8221-48e1-b1dc-ada9fd8c7105)
+
+
+```
+import pandas as pd
+from scipy import stats
+import numpy as np
+df=pd.read_csv("/content/Data_to_Transform.csv")
+df
+```
+![image](https://github.com/user-attachments/assets/34543e8f-869f-4f2a-a03e-6bbb57456837)
+
+
+```
+df.skew()
+```
+![image](https://github.com/user-attachments/assets/da838cfe-2adc-45cf-9f9d-43698a1df4a3)
+
+
+```
+np.log(df["Highly Positive Skew"])
+```
+![image](https://github.com/user-attachments/assets/1b5b0567-7d41-4a0e-902d-6a4f692ed2ac)
+
+
+```
+np.reciprocal(df["Moderate Positive Skew"])
+```
+![image](https://github.com/user-attachments/assets/743166d4-e87c-48c4-be6e-dd7b0bf3b86c)
+
+```
+np.sqrt(df["Highly Positive Skew"])
+```
+![image](https://github.com/user-attachments/assets/ae981eb0-9b61-4201-9776-8596730d527c)
+
+```
+np.square(df["Highly Positive Skew"])
+```
+![image](https://github.com/user-attachments/assets/1cc999ee-459c-4641-91ba-2ea12c604d8d)
+
+```
+df["Highly Positive Skew_boxcox"], parameters=stats.boxcox(df["Highly Positive Skew"])
+df
+```
+![image](https://github.com/user-attachments/assets/c177b06e-0798-4245-bddc-b1f88494d139)
+
+```
+df["Moderate Negative Skew_yeojohnson"],parameters=stats.yeojohnson(df["Moderate Negative Skew"])
+df
+```
+![image](https://github.com/user-attachments/assets/6ef96c2d-f358-47b1-8be0-53f2f970d937)
+
+```
+import seaborn as sns
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+sm.qqplot(df["Moderate Negative Skew"],line='45')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/f469b873-6e40-4edb-b3d3-30ca4f1d8c24)
+
+```
+from sklearn.preprocessing import QuantileTransformer
+qt=QuantileTransformer(output_distribution='normal',n_quantiles=891)
+
+df["Moderate Negative Skew"]=qt.fit_transform(df[["Moderate Negative Skew"]])
+
+sm.qqplot(df["Moderate Negative Skew"],line='45')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/e65757e5-b9ab-4a6e-9069-06fdb8daf2c9)
+
+```
+df["Highly Negative Skew_1"]=qt.fit_transform(df[["Highly Negative Skew"]])
+sm.qqplot(df["Highly Negative Skew"],line='45')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/2d781e10-14d7-4927-a82a-3d4ebab5d7ec)
+
+```
+sm.qqplot(df["Highly Negative Skew_1"],line='45')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/933d47d7-6fd9-41be-95d4-44721d5fc821)
+
+
+```
+sm.qqplot(np.reciprocal(df["Moderate Negative Skew"]),line='45')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/70bfc24f-1deb-44c7-ae90-dbf9dd6c9708)
+
 
 # RESULT:
-       # INCLUDE YOUR RESULT HERE
+      Thus to read the given data and perform Feature Encoding and Transformation process and save the data to a file has successfully executed
+
 
        
