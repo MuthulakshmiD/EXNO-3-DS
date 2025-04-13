@@ -200,7 +200,7 @@ plt.show()
 
 
 # RESULT:
-      Thus to read the given data and perform Feature Encoding and Transformation process and save the data to a file has successfully executed
+Thus to read the given data and perform Feature Encoding and Transformation process and save the data to a file has successfully executed
 
 
        
