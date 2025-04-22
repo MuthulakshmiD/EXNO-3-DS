@@ -115,13 +115,13 @@ import numpy as np
 df=pd.read_csv("/content/Data_to_Transform.csv")
 df
 ```
-![image](https://github.com/user-attachments/assets/34543e8f-869f-4f2a-a03e-6bbb57456837)
-
+![image](https://github.com/user-attachments/assets/da838cfe-2adc-45cf-9f9d-43698a1df4a3)
 
 ```
 df.skew()
 ```
-![image](https://github.com/user-attachments/assets/da838cfe-2adc-45cf-9f9d-43698a1df4a3)
+
+![image](https://github.com/user-attachments/assets/34543e8f-869f-4f2a-a03e-6bbb57456837)
 
 
 ```
